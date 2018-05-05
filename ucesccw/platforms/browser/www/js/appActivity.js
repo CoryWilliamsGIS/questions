@@ -1,8 +1,10 @@
 // Code adapted from: https://github.com/claireellul/cegeg077-week5app/blob/master/ucfscde/www/js/appActivity.js
 
 var client;
+
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
+// Create global marker variables
 var testMarkerDRed = L.AwesomeMarkers.icon({ 
 	icon: 'play',
 	markerColor: 'darkred'
@@ -23,7 +25,7 @@ var testMarkerOrange = L.AwesomeMarkers.icon({
 	markerColor: 'orange'
 	}); 
 	
-function loadMap() {	// load the tiles
+function loadMap() {	// lLoad the tiles
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +	
@@ -67,14 +69,7 @@ function getQuestions() {
 	client2.send();
 }
 
-/*
-	// create custom red marker
-	var markerOrange = L.AwesomeMarkers.icon({
-	icon: 'play',
-	markerColor: 'orange'
-});
 
-*/
 // Receive the response from the data server, and process it
 function questionResponse() {
 	// Wait until data is ready - i.e. readyState is 4
