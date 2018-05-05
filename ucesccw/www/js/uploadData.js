@@ -1,3 +1,6 @@
+//Code modified https://github.com/claireellul/cegeg077-week6formcode
+
+//Function to ensure all form fields are filled in 
 function validateData() {
         var a=document.getElementById("location_name").value;
         var b=document.getElementById("question").value;
@@ -33,11 +36,11 @@ function startDataUpload() {
 	var lat = document.getElementById("lat").value;
 	var lng = document.getElementById("lng").value;
 
-	alert(location_name + " "+ question + " \n"+ answer_1 + " " + answer_2 + " " + answer_3 + " " + answer_4 + " \n" + lat + " " + lng);
+//	alert(location_name + " "+ question + " \n"+ answer_1 + " " + answer_2 + " " + answer_3 + " " + answer_4 + " \n" + lat + " " + lng);
 
 	var postString = "location_name="+location_name +"&question="+question +"&answer_1="+answer_1 +"&answer_2="+answer_2 +"&answer_3="+answer_3+ "&answer_4="+answer_4;
 
-	// now get the radio button values
+	// now get the radio button values - ensure one is checked
 	if (document.getElementById("check1").checked) {
         postString=postString+"&answer_correct=1";
     }
