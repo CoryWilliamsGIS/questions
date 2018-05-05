@@ -1,60 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
 
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+      https://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
 -->
-<html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
-    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        * Enable eval(): add 'unsafe-eval' to default-src
-    * Create your own at http://cspisawesome.com
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Question Form</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
     -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
-</head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-cyan.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+	
 
-<body>
-    <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
+	<!-- the following links add the CSS and Javascript required for the Leaflet Map -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css" integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
+	
+	<!-- the following links add the CSS and Javascript required for the custom icons -->
+	<link rel ="stylesheet" href="ionicons.min.css">
+	<link rel="stylesheet" href="leaflet.awesome-markers.css">
+	<script src="js/leaflet.awesome-markers.js"></script>
+	
+	<!-- the following CSS is used to set the size of the Map -->
+	<style type="text/css">
+	#mapid { height: 500px; }
+	</style>
+
+	</head>
+	
+	<body>
+      <main>
+            <div class = "mdl-grid mdl-cell--stretch">
+
+               <div class = "mdl-cell mdl-cell--12-col mdl-cell--stretch graybox" div align="center">
+                 <div id="mapid" style="width: 100%; height: 400px;"></div>
+               </div>
+             </div>
+
+             <div class = "mdl-grid">
+				
+               <div class = "mdl-cell mdl-cell--6-col graybox">
+			   <em><font color="red">Please fill in all the fields below:</font color="red"></em><br>
+                <label for="location_name"><b>Location Name:</b></label><br><input type="text" size="25" id="location_name" maxlength="50"/><br/>
+
+                <label for="question"><b>Question: </b></label><br><input type="text" size="25" id="question" maxlength="200"/><br/>
+
+                <label for="answer_1"><b>Answer 1:</b></label><br><input type="text" size="25" id="answer_1" maxlength="50"/><br/>
+                <label for="answer_2"><b>Answer 2:</b></label><br><input type="text" size="25" id="answer_2" maxlength="50"/><br/>
+                <label for="answer_3"><b>Answer 3:</b></label><br><input type="text" size="25" id="answer_3" maxlength="50"/><br/>
+                <label for="answer_4"><b>Answer 4:</b></label><br><input type="text" size="25" id="answer_4" maxlength="50"/><br/>                
+				<br>
+				<legend><em>Click the map to fill in the coordinates!</em></legend>
+                <label for="lat"><b>Question Latitude:</b></label><br><input type="text" size="25" id="lat"/><br/>
+                <label for="lng"><b>Question Longitude:</b></label><br><input type="text" size="25" id="lng"/><br/>
+
+                <div class = "mdl-cell mdl-cell--6-col graybox">
+                <b>Which is the correct answer?</b>
+                  <br>
+				  1: <input type="radio" name="answer" id = check1 value="1" checked="yes" /><br />
+                  2: <input type="radio" name="answer" id = check2 value="2"/><br />
+                  3: <input type="radio" name="answer" id = check3 value="3"/><br />
+                  4: <input type="radio" name="answer" id = check4 value="4"/><br />
+                </div>
+
+               </div>
+			  
+			
+            </div>
+
+
+            <div class = "mdl-grid">
+                <div class = "mdl-cell mdl-cell--6-col graybox">
+                <button class="mdl-button mdl-button--raised mdl-button--colored" id="startUpload" onclick="validateData()">Submit Question</button>
+                <button class="mdl-button mdl-button--raised mdl-button--colored" id="reset" onclick="resetForm()">Clear Form</button>
+                <button class="mdl-button mdl-button--raised mdl-button--colored" id="reset" onclick="getQuestions()">Show Questions</button>
+
+               </div>
+
+               <div class = "mdl-cell mdl-cell--6-col graybox">
+                 <div id="dataUploadResult"></div>
+               </div>
+             </div>
+
+      </main>
     </div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
-</body>
+  
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script src="js/appActivity.js"></script>
+	<script src="js/uploadData.js"></script>
+	<script>loadMap()</script>
 
+  </body>
 </html>
