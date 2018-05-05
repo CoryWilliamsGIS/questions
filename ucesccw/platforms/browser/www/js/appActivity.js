@@ -1,3 +1,5 @@
+// Code adapted from: https://github.com/claireellul/cegeg077-week5app/blob/master/ucfscde/www/js/appActivity.js
+
 var client;
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
@@ -23,54 +25,14 @@ var testMarkerOrange = L.AwesomeMarkers.icon({
 	
 function loadMap() {	// load the tiles
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' + 
-	'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
-'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-id: 'mapbox.streets'
-}).addTo(mymap);
-}
-/*
-function getPOIs() {
-	client = new XMLHttpRequest();
-	client.open('GET','http://developer.cege.ucl.ac.uk:32089/getGeoJSON/united_kingdom_highway/geom');
-	client.onreadystatechange = POIresponse; // note don't use earthquakeResponse() with brackets as that doesn't work
-	client.send();
-}
-
-
-function POIresponse() {
-	// this function listens out for the server to say that the data is ready - i.e. has state 4
-	if (client.readyState == 4) {
-		// once the data is ready, process the data
-		var POIdata = client.responseText;
-		loadPOIlayer(POIdata);
-	}
-}
-
-function loadPOIlayer(POIdata) {
-	
-	// convert the text to JSON
-	var POIjson = JSON.parse(POIdata);
-	
-	//load the geoJSON layer using custom icons
-	var POIlayer = L.geoJson(POIjson,
-	{
-		//use point to layer to create the points
-		pointToLayer:function(feature,latlng)
-		{
-			//look at the GeoJSON file - specifically at the properties - to see the
-			//earthquake magnitude and use a different marker depending on this value
-			//also include a pop-up that shows the place value of the earthquake
-			
-			return L.marker(latlng, {icon:testMarkerDRed}).bindPopup("POI");;
-		},
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +	
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets'
 	}).addTo(mymap);
-	
-	mymap.fitBounds(POIlayer.getBounds());
 }
 
-*/
 mymap.on('click', function(e) {
 	document.getElementById("lat").value = e.latlng.lat;
 	document.getElementById("lng").value = e.latlng.lng;
@@ -91,62 +53,52 @@ function resetForm() {
 
 
 
-		// create a variable that will hold the XMLHttpRequest() - this must be done outside a function so that all the functions can use the same variable 
+// Create a variable that will hold the XMLHttpRequest() 
+var client2;
 	
-	var client2;
-	
-	// and a variable that will hold the layer itself – we need to do this outside the function so that we can use it to remove the layer later on
-	
-	var questionsLayer;
+// Create a variable that will hold the layer itself 
+var questionsLayer;
 
-	// create the code to get the Earthquakes data using an XMLHttpRequest
-	function getQuestions() {
+// create the code to get the question data using an XMLHttpRequest
+function getQuestions() {
 	client2 = new XMLHttpRequest();
 	client2.open('GET','http://developer.cege.ucl.ac.uk:30289/getquestions');
 	client2.onreadystatechange = questionResponse; // note don't use earthquakeResponse() with brackets as that doesn't work
 	client2.send();
 }
 
+/*
 	// create custom red marker
 	var markerOrange = L.AwesomeMarkers.icon({
 	icon: 'play',
 	markerColor: 'orange'
 });
 
-	// create the code to wait for the response from the data server, and process the response once it is received
-	
-	function questionResponse() {
-	
-	// this function listens out for the server to say that the data is ready - i.e. has state 4
-	
+*/
+// Receive the response from the data server, and process it
+function questionResponse() {
+	// Wait until data is ready - i.e. readyState is 4
 	if (client2.readyState == 4) {
-	// once the data is ready, process the data
-	
-	var questionData = client2.responseText;
-	loadQuestionLayer(questionData);
-}
+		// once the data is ready, process the data
+		var questionData = client2.responseText;
+		loadQuestionLayer(questionData);
+	}
 }
 
-	// convert the received data - which is text - to JSON format and add it to the map
-	function loadQuestionLayer(questionData) {
-	
-	// convert the text to JSON
+// Convert the received data - which is text - to JSON format and add it to the map
+function loadQuestionLayer(questionData) {
+	// Convert the text to JSON
 	var questionJSON = JSON.parse(questionData);
-	
-	// load the geoJSON layer
+	// Load the geoJSON layer
 	var questionsLayer = L.geoJson(questionJSON,
-{
-	// use point to layer to create the points
-	pointToLayer: function (feature, latlng)
-{
-	// look at the GeoJSON file - specifically at the properties - to see the earthquake magnitude and use a different marker depending on this value
-	// also include a pop-up that shows the place value of the earthquakes
-
-	return L.marker(latlng, {icon:markerOrange}).bindPopup("<b>"+feature.properties.location_name +"</b>" + "<p>" + feature.properties.question + "</b>");
-
-},
-}).addTo(mymap);
-	
+		{
+		// Use point to layer to create the points
+		pointToLayer: function (feature, latlng)
+		{
+			// also include a pop-up that shows the location name of the question
+			return L.marker(latlng, {icon:testMarkerOrange}).bindPopup("<b>"+feature.properties.location_name +"</b>" + "<p>" + feature.properties.question + "</b>");
+			},
+		}).addTo(mymap);
 	// change the map zoom so that all the data is shown
 	mymap.fitBounds(questionsLayer.getBounds());
 }
