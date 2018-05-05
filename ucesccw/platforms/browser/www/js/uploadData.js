@@ -1,4 +1,4 @@
-//Code modified https://github.com/claireellul/cegeg077-week6formcode
+//Code adapted from: https://github.com/claireellul/cegeg077-week6formcode
 
 //Function to ensure all form fields are filled in 
 function validateData() {
@@ -56,7 +56,7 @@ function startDataUpload() {
 
 	postString = postString + "&lat=" + lat + "&lng=" + lng;
 
-	alert (postString);
+//	alert (postString);
 
 	processData(postString);
 }

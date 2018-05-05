@@ -93,9 +93,7 @@
                <div class = "mdl-cell mdl-cell--6-col graybox">
 			   <em><font color="red">Please fill in all the fields below:</font color="red"></em><br>
                 <label for="location_name"><b>Location Name:</b></label><br><input type="text" size="25" id="location_name" maxlength="50"/><br/>
-
                 <label for="question"><b>Question: </b></label><br><input type="text" size="25" id="question" maxlength="200"/><br/>
-
                 <label for="answer_1"><b>Answer 1:</b></label><br><input type="text" size="25" id="answer_1" maxlength="50"/><br/>
                 <label for="answer_2"><b>Answer 2:</b></label><br><input type="text" size="25" id="answer_2" maxlength="50"/><br/>
                 <label for="answer_3"><b>Answer 3:</b></label><br><input type="text" size="25" id="answer_3" maxlength="50"/><br/>
@@ -104,35 +102,26 @@
 				<legend><em>Click the map to fill in the coordinates!</em></legend>
                 <label for="lat"><b>Question Latitude:</b></label><br><input type="text" size="25" id="lat"/><br/>
                 <label for="lng"><b>Question Longitude:</b></label><br><input type="text" size="25" id="lng"/><br/>
-
                 <div class = "mdl-cell mdl-cell--6-col graybox">
                 <b>Which is the correct answer?</b>
-                  <br>
-				  1: <input type="radio" name="answer" id = check1 value="1" checked="yes" /><br />
-                  2: <input type="radio" name="answer" id = check2 value="2"/><br />
-                  3: <input type="radio" name="answer" id = check3 value="3"/><br />
-                  4: <input type="radio" name="answer" id = check4 value="4"/><br />
-                </div>
-
-               </div>
-			  
-			
-            </div>
-
-
+                <br>
+				1: <input type="radio" name="answer" id = check1 value="1" checked="yes" /><br />
+				2: <input type="radio" name="answer" id = check2 value="2"/><br />
+				3: <input type="radio" name="answer" id = check3 value="3"/><br />
+				4: <input type="radio" name="answer" id = check4 value="4"/><br />
+				</div>
+			</div>
+		</div>
             <div class = "mdl-grid">
                 <div class = "mdl-cell mdl-cell--6-col graybox">
                 <button class="mdl-button mdl-button--raised mdl-button--colored" id="startUpload" onclick="validateData()">Submit Question</button>
                 <button class="mdl-button mdl-button--raised mdl-button--colored" id="reset" onclick="resetForm()">Clear Form</button>
                 <button class="mdl-button mdl-button--raised mdl-button--colored" id="reset" onclick="getQuestions()">Show Questions</button>
-
                </div>
-
                <div class = "mdl-cell mdl-cell--6-col graybox">
                  <div id="dataUploadResult"></div>
                </div>
              </div>
-
       </main>
     </div>
   
