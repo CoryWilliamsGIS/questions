@@ -94,6 +94,3 @@ function loadQuestionLayer(questionData) {
 }
 
 
-
-
-

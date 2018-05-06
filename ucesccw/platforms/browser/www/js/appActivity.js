@@ -25,7 +25,7 @@ var testMarkerOrange = L.AwesomeMarkers.icon({
 	markerColor: 'orange'
 	}); 
 	
-function loadMap() {	// lLoad the tiles
+function loadMap() {	// Load the tiles
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +	
@@ -40,7 +40,6 @@ mymap.on('click', function(e) {
 	document.getElementById("lng").value = e.latlng.lng;
 });
 
-
 function resetForm() {
 	document.getElementById("location_name").value = "";
 	document.getElementById("question").value = "";
@@ -51,9 +50,6 @@ function resetForm() {
 	document.getElementById("lat").value = "";
 	document.getElementById("lng").value = "";
 }
-
-
-
 
 // Create a variable that will hold the XMLHttpRequest() 
 var client2;
@@ -68,7 +64,6 @@ function getQuestions() {
 	client2.onreadystatechange = questionResponse; // note don't use earthquakeResponse() with brackets as that doesn't work
 	client2.send();
 }
-
 
 // Receive the response from the data server, and process it
 function questionResponse() {
@@ -97,8 +92,5 @@ function loadQuestionLayer(questionData) {
 	// change the map zoom so that all the data is shown
 	mymap.fitBounds(questionsLayer.getBounds());
 }
-
-
-
 
 

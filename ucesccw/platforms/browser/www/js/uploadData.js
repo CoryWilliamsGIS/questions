@@ -1,17 +1,16 @@
 //Code adapted from: https://github.com/claireellul/cegeg077-week6formcode
 
 //Function to ensure all form fields are filled in 
-function validateData() {
-	var a=document.getElementById("location_name").value;
-	var b=document.getElementById("question").value;
-	var c=document.getElementById("answer_1").value;
-	var d=document.getElementById("answer_2").value;
-	var e=document.getElementById("answer_3").value;
-	var f=document.getElementById("answer_4").value;
-	var g=document.getElementById("answer_1").value;
-	var h=document.getElementById("answer_2").value;
+function validateQuestion() {
+	var ln=document.getElementById("location_name").value;
+	var q=document.getElementById("question").value;
+	var a1=document.getElementById("answer_1").value;
+	var a2=document.getElementById("answer_2").value;
+	var a3=document.getElementById("answer_3").value;
+	var a4=document.getElementById("answer_4").value;
+
 	
-	if (a==null || a=="",b==null || b=="",c==null || c=="",d==null || d=="")
+	if (ln==null || ln=="",q==null || q=="",a1==null || a1=="",a2==null || a2=="",a3==null || a3=="",a4==null || a4=="")
         {
             alert("Please ensure all fields are filled.");
             return false;
