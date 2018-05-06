@@ -22,7 +22,7 @@ function validateQuestion() {
 }
 
 function startDataUpload() {
-	alert ("start data upload");
+	alert ("Submitting question to database!");
 
 	var location_name = document.getElementById("location_name").value;
 	var question = document.getElementById("question").value;
