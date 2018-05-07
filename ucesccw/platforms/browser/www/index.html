@@ -84,12 +84,12 @@
              <div class = "mdl-grid">	
                <div class = "mdl-cell mdl-cell--6-col graybox">
 			   <em><font color="red">Please fill in all the fields below:</font color="red"></em><br>
-                <label for="location_name"><b>Location Name:</b></label><br><input type="text" size="25" id="location_name" maxlength="50"/><br/>
+                <label for="location_name"><b>Location Name:</b></label><br><input type="text" size="25" id="location_name" maxlength="30"/><br/>
                 <label for="question"><b>Question: </b></label><br><input type="text" size="25" id="question" maxlength="200"/><br/>
-                <label for="answer_1"><b>Answer 1:</b></label><br><input type="text" size="25" id="answer_1" maxlength="50"/><br/>
-                <label for="answer_2"><b>Answer 2:</b></label><br><input type="text" size="25" id="answer_2" maxlength="50"/><br/>
-                <label for="answer_3"><b>Answer 3:</b></label><br><input type="text" size="25" id="answer_3" maxlength="50"/><br/>
-                <label for="answer_4"><b>Answer 4:</b></label><br><input type="text" size="25" id="answer_4" maxlength="50"/><br/>                
+                <label for="answer_1"><b>Answer 1:</b></label><br><input type="text" size="25" id="answer_1" maxlength="20"/><br/>
+                <label for="answer_2"><b>Answer 2:</b></label><br><input type="text" size="25" id="answer_2" maxlength="20"/><br/>
+                <label for="answer_3"><b>Answer 3:</b></label><br><input type="text" size="25" id="answer_3" maxlength="20"/><br/>
+                <label for="answer_4"><b>Answer 4:</b></label><br><input type="text" size="25" id="answer_4" maxlength="20"/><br/>                
 				<br>
 				<legend><em>Click the map to fill in the coordinates!</em></legend>
                 <label for="lat"><b>Question Latitude:</b></label><br><input type="text" size="25" id="lat"/><br/>
@@ -107,11 +107,11 @@
             <div class = "mdl-grid">
                 <div class = "mdl-cell mdl-cell--6-col graybox">
                 <button class="mdl-button mdl-button--raised mdl-button--colored" id="startUpload" onclick="validateQuestion()">Submit Question</button>
-                <button class="mdl-button mdl-button--raised mdl-button--colored" id="clear" onclick="resetForm()">Clear Form</button>
+                <button class="mdl-button mdl-button--raised mdl-button--colored" id="clear" onclick="clearForm()">Clear Form</button>
                 <button class="mdl-button mdl-button--raised mdl-button--colored" id="show" onclick="getQuestions()">Show Questions</button>
                </div>
                <div class = "mdl-cell mdl-cell--6-col graybox">
-                 <div id="dataUploadResult"></div>
+                 <div id="questionUploadResult"></div>
                </div>
              </div>
       </main>

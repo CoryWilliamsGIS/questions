@@ -1,7 +1,6 @@
 // Code adapted from: https://github.com/claireellul/cegeg077-week5app/blob/master/ucfscde/www/js/appActivity.js
 
-var client;
-
+// Assigns leaflet map 
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 // Create global marker variables
@@ -24,7 +23,8 @@ var testMarkerOrange = L.AwesomeMarkers.icon({
 	icon: 'play',
 	markerColor: 'orange'
 	}); 
-	
+
+// Load Leaflet map
 function loadMap() {	// Load the tiles
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',{
 		maxZoom: 18,
@@ -35,12 +35,14 @@ function loadMap() {	// Load the tiles
 	}).addTo(mymap);
 }
 
+// Get coordinate values when leaflet map is clicked
 mymap.on('click', function(e) {
 	document.getElementById("lat").value = e.latlng.lat;
 	document.getElementById("lng").value = e.latlng.lng;
 });
 
-function resetForm() {
+// Clear any populate fields in the form
+function clearForm() {
 	document.getElementById("location_name").value = "";
 	document.getElementById("question").value = "";
 	document.getElementById("answer_1").value = "";
@@ -51,17 +53,17 @@ function resetForm() {
 	document.getElementById("lng").value = "";
 }
 
-// Create a variable that will hold the XMLHttpRequest() 
+// Variable that will hold the XMLHttpRequest() 
 var client2;
 	
-// Create a variable that will hold the layer itself 
-var questionsLayer;
+// Variable to hold the points once retrieved
+var questionPoints;
 
 // create the code to get the question data using an XMLHttpRequest
 function getQuestions() {
 	client2 = new XMLHttpRequest();
 	client2.open('GET','http://developer.cege.ucl.ac.uk:30289/getquestions');
-	client2.onreadystatechange = questionResponse; // note don't use earthquakeResponse() with brackets as that doesn't work
+	client2.onreadystatechange = questionResponse; 
 	client2.send();
 }
 
@@ -69,28 +71,26 @@ function getQuestions() {
 function questionResponse() {
 	// Wait until data is ready - i.e. readyState is 4
 	if (client2.readyState == 4) {
-		// once the data is ready, process the data
-		var questionData = client2.responseText;
-		loadQuestionLayer(questionData);
+		// Once the data is ready, process the data
+		var qData = client2.responseText;
+		loadQuestionPoints(qData);
 	}
 }
 
 // Convert the received data - which is text - to JSON format and add it to the map
-function loadQuestionLayer(questionData) {
+function loadQuestionPoints(qData) {
 	// Convert the text to JSON
-	var questionJSON = JSON.parse(questionData);
+	var questionJSON = JSON.parse(qData);
 	// Load the geoJSON layer
-	var questionsLayer = L.geoJson(questionJSON,
+	var questionPoints = L.geoJson(questionJSON,
 		{
 		// Use point to layer to create the points
 		pointToLayer: function (feature, latlng)
 		{
-			// also include a pop-up that shows the location name of the question
+			// Plot question as orange leaflet marker and put the location name and question in a pop up viewable on click
 			return L.marker(latlng, {icon:testMarkerOrange}).bindPopup("<b>"+feature.properties.location_name +"</b>" + "<p>" + feature.properties.question + "</b>");
 			},
 		}).addTo(mymap);
 	// change the map zoom so that all the data is shown
-	mymap.fitBounds(questionsLayer.getBounds());
+	mymap.fitBounds(questionPoints.getBounds());
 }
-
-
