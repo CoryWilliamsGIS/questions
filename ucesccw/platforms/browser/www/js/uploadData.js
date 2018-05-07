@@ -72,7 +72,7 @@ function processQuestion(postString) {
    client.send(postString);
 }
 
-// Create the code to wait for the response from the data server, and process the response once it is received
+// Receive response from the data server, and process the response once it is received
 function questionUploaded() {
   // Wait for the data to be ready - i.e. has state 4
   if (client.readyState == 4) {

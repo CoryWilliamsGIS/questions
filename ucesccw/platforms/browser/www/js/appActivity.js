@@ -77,14 +77,14 @@ function questionResponse() {
 	}
 }
 
-// Convert the received data - which is text - to JSON format and add it to the map
+// Convert the received data from text to JSON and add it to the Leaflet map
 function loadQuestionPoints(qData) {
 	// Convert the text to JSON
 	var questionJSON = JSON.parse(qData);
-	// Load the geoJSON layer
+	// Load question points as GeoJSON
 	var questionPoints = L.geoJson(questionJSON,
 		{
-		// Use point to layer to create the points
+		// Use point to layer to create the question points
 		pointToLayer: function (feature, latlng)
 		{
 			// Plot question as orange leaflet marker and put the location name and question in a pop up viewable on click
