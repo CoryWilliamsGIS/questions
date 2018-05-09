@@ -14,6 +14,9 @@ The web application:
  2. Displays a question setting form.
  3. Submits the question to the database.
  4. Retrieve existing questions from the database and adds them to the map.
+ 
+ # Updates
+ Since the above demo, an update has taken place. A new button has now been placed in the web application. Once clicked, this button opens the Web_User_Guide html file in another tab for the convenience of the user.
 
 This application interface is adapted from the [Material Design Lite](https://getmdl.io/templates/index.html) front-end dashboard template. 
 
